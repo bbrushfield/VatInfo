@@ -1,6 +1,6 @@
-https://discordapp.com/oauth2/authorize?client_id=777204259317088266&scope=bot&permissions=8 
+https://discordapp.com/oauth2/authorize?client_id=900792357258137600&scope=bot&permissions=8 
 
-777204259317088266 CLIENT ID  
+900792357258137600 CLIENT ID  
 
 
 
@@ -12,8 +12,3 @@ module.exports = {
 
     }
 }
-
-MongoDB:
-Database login Info:
-Username: BBRP
-Password: BBRPManager
