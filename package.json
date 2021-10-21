@@ -1,21 +1,27 @@
 {
   "name": "lymeregis",
   "version": "1.0.0",
-  "description": "Discord Bot development for Lyme Regis",
+  "description": "lyme",
   "main": "index.js",
-  "dependencies": {
-    "ascii-table": "0.0.9",
-    "discord.js": "^13.2.0",
-    "dotenv": "^10.0.0",
-    "events": "^3.3.0",
-    "fs": "0.0.1-security",
-    "gamedig": "^3.0.7",
-    "http": "0.0.1-security"
-  },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "AyeeMod#0001",
-  "license": "ISC"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bbrushfield/Lyme-Regis.git"
+  },
+  "author": "ayeemod",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bbrushfield/Lyme-Regis/issues"
+  },
+  "homepage": "https://github.com/bbrushfield/Lyme-Regis#readme",
+  "dependencies": {
+    "ascii-table": "^0.0.9",
+    "common-tags": "^1.8.0",
+    "discord.js": "^13.2.0",
+    "dotenv": "^10.0.0",
+    "fs": "^0.0.1-security",
+    "http": "^0.0.1-security"
+  }
 }
