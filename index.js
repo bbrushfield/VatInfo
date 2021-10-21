@@ -1,5 +1,5 @@
 const botconfig = require("./management/botconfig.json");
-const { Client, RichEmbed, Collection } = require("discord.js");
+const { Client, RichEmbed, Collection, Intents } = require("discord.js");
 const fs = require("fs");
 const http = require('http');
 const { token } = require('./config')
@@ -12,7 +12,8 @@ const prefix = botconfig.prefix;
 
 //Allows the bot to mention.
 const client = new Client({
-    disableEveryone: false
+    disableEveryone: false,
+    intents: ["GUILDS", "GUILD_MESSAGES"]
 });
 
 // For use with the commands handler to ensure aliases such as !training can also be used as !post
@@ -35,7 +36,7 @@ client.on("ready", () => {
     client.user.setStatus('idle')
 });
 
-client.on("message", async message => {
+client.on("messageCreate", async message => {
     // Sets prefix and takes off the command, e.g. !post, by slicing it.
     if (message.author.bot) return;
     if (!message.guild) return;
