@@ -1,0 +1,20 @@
+{
+  "name": "lymeregis",
+  "version": "1.0.0",
+  "description": "Discord Bot development for Lyme Regis",
+  "main": "index.js",
+  "dependencies": {
+    "ascii-table": "0.0.9",
+    "discord.js": "^13.2.0",
+    "dotenv": "^10.0.0",
+    "fs": "0.0.1-security",
+    "gamedig": "^3.0.7",
+    "http": "0.0.1-security"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "AyeeMod#0001",
+  "license": "ISC"
+}
