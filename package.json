@@ -7,6 +7,7 @@
     "ascii-table": "0.0.9",
     "discord.js": "^13.2.0",
     "dotenv": "^10.0.0",
+    "events": "^3.3.0",
     "fs": "0.0.1-security",
     "gamedig": "^3.0.7",
     "http": "0.0.1-security"
