@@ -32,7 +32,7 @@ client.categories = fs.readdirSync("./commands/");
 client.on("ready", () => {
     console.log(`Hi, ${client.user.username} is now online!`); // Once bot is online, this will log in console
     // Sets the status of the bot
-    client.user.setActivity('FiveM', { type: 'WATCHING' })
+    client.user.setActivity('Lyme Regis Community!', { type: 'WATCHING' })
     client.user.setStatus('idle')
 });
 

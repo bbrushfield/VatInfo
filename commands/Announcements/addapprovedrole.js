@@ -11,6 +11,18 @@ function amendJson(id){
     fs.writeFileSync('commands/Announcements/approvedRoles.json',listjson,'utf-8');
 }
 
+function checkIfPresent(id){
+    let listjson = fs.readFileSync("commands/Announcements/approvedRoles.json")
+    let roles = JSON.parse(listjson)
+    console.log(roles)
+    for (i=0; i<roles.length; i++){
+        if (roles[i] == id){
+            return true;
+        }
+    }
+    return false;
+}
+
 module.exports = {
     name: "approve",
     aliases: ["addapprovedrole"],
@@ -25,9 +37,14 @@ module.exports = {
 
         if (!matches) return message.channel.send('Please mention a role to add, or get the ID!')
 
-        const id = matches[0]
-        console.log(id)
-        amendJson(id)
+        var str = matches[0].replaceAll('<@&','').replaceAll('>','')
+        str = parseInt(str)
+        console.log(str)
+        if (checkIfPresent(str) == true) {
+            return message.channel.send('This is already an approved role!')
+        } else {
+            amendJson(str)
+        }
 
     }
 }
