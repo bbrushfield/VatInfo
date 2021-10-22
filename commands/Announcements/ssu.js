@@ -4,7 +4,8 @@
 const fs = require('fs')
 const Discord = require('discord.js');
 const botconfig = require("./../../management/botconfig.json");
-const moment = require('moment')
+const moment = require('moment');
+const { duration } = require('moment');
 
 function Response(message){
     const Resp = new Discord.MessageEmbed()
@@ -70,7 +71,25 @@ function Approval(message,client) {
     .addField('Request sent at', dateString)
     .setTimestamp()
     .setFooter(`Requested by ${message.author.username}`, message.author.avatarURL())
-    channel.send({ content: '@here', embeds: [ApprovalEmbed] })
+    channel.send({ content: '@here', embeds: [ApprovalEmbed] }).then(ApprovalSent => {
+        const Filter = (reaction, user) => {
+            return ['✅', '❌'].includes(reaction.emoji.name)
+        };
+        ApprovalSent.react('✅')
+        ApprovalSent.react('❌')
+        ApprovalSent.awaitReactions(Filter, {max: 1, time: 120000}).then(collected => {
+
+            const reaction = collected.first()
+
+            if (reaction.emoji.name === '✅') {
+                // The SSU has been approved
+            } else if (reaction.emoji.name === '❌') {
+                //The SSU has been denied, a reason must be provided!
+            } else {
+                Error(message,'The emoji sent is not an approved emoji!')
+            }
+        })
+    })
 }
 
 module.exports = {

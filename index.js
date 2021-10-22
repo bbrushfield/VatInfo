@@ -1,5 +1,5 @@
 const botconfig = require("./management/botconfig.json");
-const { Client, RichEmbed, Collection, Intents } = require("discord.js");
+const { Client, RichEmbed, Collection, Intents, DiscordAPIError } = require("discord.js");
 const fs = require("fs");
 const http = require('http');
 const { token } = require('./config')
@@ -47,10 +47,8 @@ client.on("messageCreate", async message => {
     const cmd = args.shift().toLowerCase();
     // If there is not a command, e.g. "Hello barry", it will stop listening until the next piece of texts
     if (cmd.length === 0) return;
-    
     let command = client.commands.get(cmd);
     if (!command) command = client.commands.get(client.aliases.get(cmd));
-
     if (command) 
         command.run(client, message, args);
 });
