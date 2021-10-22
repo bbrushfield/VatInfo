@@ -8,5 +8,7 @@ module.exports = {
     usage: "[command | alias]",
     run: async (client, message, args) => {
         message.channel.send('hi')
+        const time = Date.now()
+        console.log(time)
     }
 }

@@ -6,7 +6,8 @@ const Discord = require('discord.js');
 const botconfig = require("./../../management/botconfig.json");
 const moment = require('moment');
 const { duration } = require('moment');
-
+var stored_time = 0
+var cooldown = false
 function Response(message){
     const Resp = new Discord.MessageEmbed()
     .setAuthor(botconfig.Footer, botconfig.IconURL)
@@ -92,6 +93,16 @@ function Approval(message,client) {
     })
 }
 
+function unix_get(unix){
+    var date = new Date(unix);
+
+    var minutes = '0' + date.getMinutes();
+    var seconds = '0' + date.getSeconds();
+
+    var formatted = minutes.substr(-2) + ' minutes ' + seconds.substr(-2) + ' seconds';
+    return formatted
+}
+
 module.exports = {
     name: "ssu",
     aliases: ["serverstartup"],
@@ -99,15 +110,43 @@ module.exports = {
     description: "Allows for Server Startups to be hosted",
     usage: ".ssu",
     run: async (client, message, args) => {
-        const approvalcheck = ApprovedCheck(message)
-        if (approvalcheck == true) {
-            // They have a role that do not require approval to launch a Server Startup
-        } else if (approvalcheck == false) {
-            // They do not have a role and require approval to launch a SSU (THIS WILL NOT PING EVERYONE!!!!!!)
-            Response(message)
-            Approval(message,client)
+        let unix_hour = 3600000
+        cooldown == true
+        if (stored_time == 0) {
+            //The first time the command is run from when the bot starts, the command is good.
+            stored_time = Date.now()
+            const approvalcheck = ApprovedCheck(message)
+                if (approvalcheck == true) {
+                    // They have a role that do not require approval to launch a Server Startup
+                } else if (approvalcheck == false) {
+                    // They do not have a role and require approval to launch a SSU (THIS WILL NOT PING EVERYONE!!!!!!)
+                    Response(message)
+                    Approval(message,client)
+                } else {
+                    Error(message, 'There has been an unexpected error. Please send this error code in a bug report: SSU#ERRAPPROVAL')
+                }
         } else {
-            Error(message, 'There has been an unexpected error. Please send this error code in a bug report: SSU#ERRAPPROVAL')
+            let new_time = Date.now()
+            console.log(new_time - stored_time)
+            if(new_time - stored_time < unix_hour) {
+                //It has been under an hour since the last SSU
+                let timesince = new_time - stored_time
+
+                let format_date = unix_get(unix_hour - timesince)
+                Error(message,`It has been under an hour since the last SSU. Please wait ${format_date}  `)
+            } else {
+                //It has been over an hour, and the message can be sent, and the cooldown must be reinstated
+                const approvalcheck = ApprovedCheck(message)
+                if (approvalcheck == true) {
+                    // They have a role that do not require approval to launch a Server Startup
+                } else if (approvalcheck == false) {
+                    // They do not have a role and require approval to launch a SSU (THIS WILL NOT PING EVERYONE!!!!!!)
+                    Response(message)
+                    Approval(message,client)
+                } else {
+                    Error(message, 'There has been an unexpected error. Please send this error code in a bug report: SSU#ERRAPPROVAL')
+                }
+            }
         }
     }
 }
