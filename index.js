@@ -13,7 +13,7 @@ const prefix = botconfig.prefix;
 //Allows the bot to mention.
 const client = new Client({
     disableEveryone: false,
-    intents: ["GUILDS", "GUILD_MESSAGES"]
+    intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MESSAGE_REACTIONS"]
 });
 
 // For use with the commands handler to ensure aliases such as !training can also be used as !post

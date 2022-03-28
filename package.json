@@ -1,30 +1,32 @@
 {
-  "name": "lymeregis",
+  "name": "VATInfo",
   "version": "1.0.0",
-  "description": "lyme",
+  "description": "Gives detailed information on flights inbound and outbound.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bbrushfield/Lyme-Regis.git"
+    "url": "git+https://github.com/bbrushfield/VatInfo"
   },
   "author": "ayeemod",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/bbrushfield/Lyme-Regis/issues"
+    "url": "https://github.com/bbrushfield/VatInfo"
   },
-  "homepage": "https://github.com/bbrushfield/Lyme-Regis#readme",
+  "homepage": "https://github.com/bbrushfield/VatInfo",
   "dependencies": {
+    "airport-codes": "^1.0.2",
     "ascii-table": "^0.0.9",
     "aws-sdk": "^2.1012.0",
     "common-tags": "^1.8.0",
-    "discord.js": "^13.2.0",
+    "discord.js": "^13.6.0",
     "dotenv": "^10.0.0",
     "fs": "^0.0.1-security",
     "http": "^0.0.1-security",
     "json": "^11.0.0",
-    "moment": "^2.29.1"
+    "moment": "^2.29.1",
+    "vatsim-data-handler": "^6.1.3"
   }
 }
