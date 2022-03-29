@@ -71,10 +71,15 @@ async function findController(message, input) {
         //THIS IS WHERE I NEED TO WORK ON FINDING CALLSIGNS
         if (list.length == 0){ 
             for (t=0; t < val.length; t++){
-               // console.log(val[t].callsign.toUpperCase() + ' ' + input.toUpperCase())
-                if (val[t].callsign.toUpperCase().includes(input.toUpperCase())) {
+               let primarysplit = val[t].callsign.split('_')
+               let secondarysplit = primarysplit[0].toString()
+               let currentinput = input.toUpperCase().toString()
+               console.log(secondarysplit + input.toUpperCase())
+                if (secondarysplit === currentinput) {
                     console.log('found')
                     final(message, val[t])
+                } else {
+                    console.log('not a match')
                 }
             }
         } else if (list.length > 1){ //If there was more than one person with that name
@@ -118,14 +123,7 @@ async function findController(message, input) {
             for (x=0; x < val.length; x++){
                 if (val[x].name.toLowerCase().includes(input.toLowerCase())) {
                     console.log(val[x])
-                    const finalembed = new Discord.MessageEmbed()
-                    .setTitle(`Controller information for ${val[x].name} (${val[x].cid})`)
-                    .setDescription(`Callsign: ${val[x].callsign}`)
-                    .addField('Frequency',val[x].frequency,true)
-                    .addField('Facility',`${findFacility(val[x].facility)}`,true)
-                    .addField(`Rating`,`${findRating(val[x].rating)}`,true)
-                    .addField(`Controller Description`,`${val[x].text_atis[0]}, ${val[x].text_atis[1]}, ${val[x].text_atis[2]}`, true)
-                    message.channel.send({embeds: [finalembed]})
+                    final(message, val[x])
                 }
             }
         }
@@ -138,7 +136,7 @@ module.exports = {
     name: "findcontroller",
     aliases: ["findctr"],
     category: "VATSIM",
-    description: "Returns all commands, or one specific command info",
+    description: "Searches for a controller using NAME. Controller callsign under development.",
     usage: "[command | alias]",
     run: async (client, message, args) => {
         console.log(args)

@@ -30,8 +30,8 @@ module.exports = {
     name: "popularairports",
     aliases: ["popapts"],
     category: "VATSIM",
-    description: "Returns all commands, or one specific command info",
-    usage: "[command | alias]",
+    description: "Returns a list of popular airports on ranking 1 to 10.",
+    usage: "[command]",
     run: async (client, message, args) => {
         getPopularAirports(message)
     }

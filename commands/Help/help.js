@@ -31,7 +31,8 @@ function getAll(client, message) {
         .map(cat => stripIndents`**${cat[0].toUpperCase() + cat.slice(1)}** \n${commands(cat)}`)
         .reduce((string, category) => string + "\n" + category);
 
-    return message.channel.send(embed.setDescription(info));
+    embed.setDescription(info)
+    return message.channel.send({embeds: [embed]});
 }
 
 function getCMD(client, message, input) {
@@ -42,7 +43,8 @@ function getCMD(client, message, input) {
     let info = `No information found for command **${input.toLowerCase()}**`;
 
     if (!cmd) {
-        return message.channel.send(embed.setColor("RED").setDescription(info));
+        embed.setColor("RED").setDescription(info)
+        return message.channel.send({embeds: [embed]});
     }
 
     if (cmd.name) info = `**Command name**: ${cmd.name}`;
@@ -52,6 +54,6 @@ function getCMD(client, message, input) {
         info += `\n**Usage**: ${cmd.usage}`;
         embed.setFooter(`Syntax: <> = required, [] = optional`);
     }
-
-    return message.channel.send(embed.setColor("GREEN").setDescription(info));
+    embed.setColor("GREEN").setDescription(info)
+    return message.channel.send({embeds: [embed]});
 }

@@ -43,7 +43,7 @@ async function getFlightandFormat(input, message) {
         .addField('True Position',`Lat: ${val.latitude}, Long: ${val.longitude}`,true)
         .addField('Current Altitude (STD)',`${val.altitude}ft`, true)
         .addField('True Ground Speed (kts)', `${val.groundspeed}kts`, true)
-        .addField('True Heading',val.heading, true)
+        .addField('True Heading',val.heading.toString(), true)
         .addField('Enroute Time Estimated at', val.flight_plan.enroute_time + 'z', true)
         .addField('Aircraft Type', val.flight_plan.aircraft_short)
         let fr = ''
@@ -73,7 +73,7 @@ module.exports = {
     name: "flightinfo",
     aliases: ["finfo"],
     category: "VATSIM",
-    description: "Returns all commands, or one specific command info",
+    description: "Finds a flight currently active on the VATSIM network.",
     usage: "[command | alias]",
     run: async (client, message, args) => {
         let input = args[0]

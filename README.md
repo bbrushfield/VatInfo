@@ -1,6 +1,6 @@
-# BBRP Discord Bot #
+# VatInfo Discord Bot #
 ## Details ##
-This release is unfinished - Current inconsistencies include the FiveM Command Library. 
+This release is unfinished
 
 ## Commands ##
 ## General Commands ###

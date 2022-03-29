@@ -67,8 +67,8 @@ module.exports = {
     name: "online",
     aliases: ["o"],
     category: "VATSIM",
-    description: "Returns a list of all active pilots currently registered with RAFv",
-    usage: "command",
+    description: "Returns a list of all active pilots currently registered with the bot.",
+    usage: "[command]",
     run: async (client, message, args) => {
         console.log('h')
         getFlightandFormat(message)
